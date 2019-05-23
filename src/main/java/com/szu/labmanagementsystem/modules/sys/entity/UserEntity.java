@@ -7,7 +7,7 @@ import java.io.Serializable;
 @TableName("tb_user")
 public class UserEntity implements Serializable{
     private static final long serialVersionUID = 1L;
-    private String userId;
+    private Long userId;
     private String userName;
     private String passWord;
     private String StudentNo;
@@ -16,7 +16,7 @@ public class UserEntity implements Serializable{
     public UserEntity() {
     }
 
-    public UserEntity(String userId, String userName, String passWord, String studentNo, Integer age) {
+    public UserEntity(Long userId, String userName, String passWord, String studentNo, Integer age) {
         this.userId = userId;
         this.userName = userName;
         this.passWord = passWord;
@@ -24,11 +24,11 @@ public class UserEntity implements Serializable{
         this.age = age;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
