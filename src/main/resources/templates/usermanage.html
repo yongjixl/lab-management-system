@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diagnoa" />
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap-theme.min.css?" media=screen>
+
+    <link rel="stylesheet" href="../plugins/bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-multiselect/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="title" id="mytitle">
+    <div class="title-panel container">
+        <a class="title-logo" href="javascript:void(0);"></a>
+        <div class="title-setting">
+            <div class="dropdown">
+                <a href="javascript:void(0);" data-target="#"
+                   data-toggle="dropdown"> <span id="sessionUsername" th:text="${session.userName}" th:title="${session.userName}"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);" id="chg_password">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0);" id="logout">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="title-menu">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="javascript:void(0);"  class="SchoolNavTab">用户管理</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+</div>
+
+
+
+<div class="container title-top" id="UserNavTab">
+    <table id="table" data-toggle="table"
+           data-classes="table table-no-bordered table-hover"
+           data-show-refresh="true" data-pagination="true"
+           data-page-list="[10,25,50]" data-search="true"
+           data-side-pagination="client" data-ajax="ajaxRequestClient">
+        <thead>
+            <tr>
+                <th data-field="userName" data-valign="middle" data-width="10%">用户名</th>
+                <th data-field="createdAt" data-valign="middle" data-width="15%" data-formatter="timeFormatter">创建时间</th>
+                <th data-field="password" data-valign="middle" data-width="7%">密码</th>
+                <th data-field="operate" data-valign="middle" data-width="8%"
+                    data-formatter="addOperations" data-events="operateEvents">操作</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+<div class="modal fade" id="edit-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">修改权限</h4>
+            </div>
+            <div class="modal-body">
+               <%-- <div class="row">
+                </div>--%>
+                <div class="checkbox">
+                    <ul id="checkboxUl">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="result-msg">
+                    <p></p>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="save">确认修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../plugins/jquery/jquery-2.1.1.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../plugins/bootstrap/js/bootstrap.min.js" charset="UTF-8"></script>
+<script type="text/javascript"
+        src="../plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="../plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script charset="UTF-8" src="../js/usermanage.js?s=23"></script>
+
+
+</body>
+</html>

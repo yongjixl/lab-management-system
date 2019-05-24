@@ -1,0 +1,353 @@
+@charset "utf-8";
+
+html, body, div, h1, h2, h3, h4, h5, h6, p, img, ol, ul, li, dl, dd, dt,
+	input, label {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	overflow-x: hidden;
+}
+
+body {
+	font-size: 14px;
+	color: #373945;
+	font-family: "Microsoft Yahei", "Hiragino Sans GB", "冬青黑体简体中文 w3",
+		STXihei, "华文细黑", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+	line-height: 24px;
+}
+
+ul, li {
+	list-style: none;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+}
+
+em, i {
+	font-style: normal;
+}
+
+img {
+	border: none;
+}
+
+/** 图片动画效果样式*/
+.scale {
+	display: block;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-ms-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.scale:hover {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+/** 居中对其 */
+.absolute-center {
+	position: absolute;
+	margin: auto;
+	/* width: 50%; */
+	height: 50%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+/*********************************************页面整体*****************************************/
+.index-bg {
+	background: #f1f1f1;
+}
+
+/**********************************顶部导航栏************************************/
+.title {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 25px;
+	width: 100%;
+	z-index: 999;
+	background-color: white;
+}
+
+/** LOGO */
+.title-panel>.title-logo {
+	float: left;
+	height:  63px;
+	width: 280px;
+	display: block;
+	overflow: hidden;
+	background: url(/image/logo_heng1.jpg) no-repeat;
+	background-size: cover;
+}
+
+/** 校徽或个人头像 */
+.title-panel>.img-circle {
+	height: 50px;
+	float: right;
+	cursor: pointer;
+}
+
+/**  设置中心 和 主菜单 的位置和高度 */
+.title-panel>.title-setting, .title-panel>.title-menu {
+	float: right;
+	height: 40px;
+	margin: 17px 0;
+}
+
+/**  设置中心样式  */
+.title-panel>.title-setting {
+	padding: 8px 5px;
+}
+
+.title-setting>.dropdown>a {
+	color: black;
+}
+
+.title-setting>.dropdown>a:hover, .title-setting>.dropdown>a:focus {
+	text-decoration: none;
+}
+
+.title-setting>.dropdown>a .caret {
+	margin-left: 5px;
+	border-top: 0px;
+	border-bottom: 4px dashed;
+}
+
+/** 设置中心：下拉菜单的宽度  */
+.title-setting>.dropdown>.dropdown-menu {
+	min-width: 115px;
+}
+
+/** 主菜单样式 */
+.title-panel>.title-menu {
+	margin-right: 35px;
+}
+
+.title-menu li>a {
+	padding: 8px 16px;
+	border-radius: 18px;
+}
+
+.title-menu .nav-pills>li>a {
+	color: black;
+}
+
+.title-menu .nav-pills>li>a:hover {
+	background-color: #e8f5ff;
+}
+
+.title-menu .nav-pills>li.active>a, .title-menu .nav-pills>li.active>a:focus,
+	.title-menu .nav-pills>li.active>a:hover {
+	color: #fff;
+	/*background-color: #0078d8;*/
+	background-color: #1f3f84;
+}
+
+/** title底部的分割线 */
+.title>hr {
+	width: 100%;
+	margin: 12px 0 0;
+	/*border-top: 3px solid #0078d8;*/
+	border-top: 3px solid #1f3f84;
+}
+
+/** 主内容的容器设置 */
+.title-top {
+	margin-top: 113px;
+	padding-top: 15px;
+}
+
+/**********************************右侧顶部导航栏************************************/
+.right-title {
+	position: fixed;
+	top: 0;
+	left: 200px;
+	width: 100%;
+	z-index: 998;
+	background-color: white;
+}
+
+.right-title>.title-menu {
+	margin: 20px 35px;
+}
+
+.title-menu li>a {
+	padding: 8px 16px;
+	border-radius: 18px;
+}
+
+/** 上下布局分隔线  */
+.right-title>hr {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/***************************** bootstrap table中操作按钮 ***************************/
+.operation-a>a {
+	margin-left: 10px;
+	white-space: nowrap;
+}
+
+.operation-a>a:first-child {
+	margin-left: 0 !important;
+}
+
+/**************************** 锁屏样式  ********************************************/
+.lock-screen {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+	z-index: 1100;
+}
+
+/**************************** 必须输入样式  ********************************************/
+.control-label>span.required {
+	color: red;
+	padding-left: 2px;
+}
+
+/**************************** 等待页面样式  ********************************************/
+.covering-layer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 999;
+	opacity: .50;
+}
+
+.layer-info {
+	position: absolute;
+	top: 30%;
+	left: 42%;
+	width: 240px;
+	height: 220px;
+	padding: 8px 8px;
+	border: 1px solid #E8E9F7;
+	background-color: white;
+	z-index: 1000;
+	overflow: auto;
+	text-align: center;
+	border-radius: 4px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, .45);
+}
+
+.layer-info .info-img {
+	margin-top: 14px;
+}
+
+.layer-info .info-text {
+	margin-top: 14px;
+	font-weight: bold;
+}
+
+.layer-info .info-btn {
+	margin-top: 14px;
+}
+
+/**************************** 顶部导航栏工具条样式  ********************************************/
+.mxq-title-tools {
+	position:fixed;
+	right:0px;
+	height: 80px;
+	width: 200px;
+	z-index: 999;
+	background: transparent;
+}
+
+.mxq-title-tools>img{
+	display:inline;
+	margin: 25px 20px 25px 0px;
+	width: 30px;
+	height: 30px;
+	border-width:0px;
+	cursor: pointer;
+}
+
+.mxq-title-tools>img:nth-of-type(3).disabled {
+	cursor: not-allowed;
+}
+
+.mxq-title-toolview {
+	position:fixed;
+	top:60px;
+	right:10px;
+	width: 390px;
+	background:white;
+	border:1px solid #E0E0E0; 
+	z-index: 999;
+}
+
+.mxq-title-toolview>div:first-child {
+	width:100%;
+	padding:5px 0px 5px 15px;
+	background: #31B2E6;
+	color: white;
+	font-size: 17px;
+}
+.mxq-title-toolview>div:nth-of-type(2) {
+	width:100%;
+	max-height: 300px;
+	background: white;
+	overflow: auto;
+}
+
+.mxq-title-toolview>div:nth-of-type(2)>div {
+	width:100%;
+	padding:5px 10px 5px 10px;
+	border-bottom:1px;
+	border-bottom-style: solid;
+	border-bottom-color: #E0E0E0;
+	background: white;
+}
+
+.mxq-title-toolview>div:nth-of-type(2)>div>p:nth-of-type(1) {
+	width: 300px;
+	font-size: 14px;
+	color: #1E8EC9;
+	line-height: 23px;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+.mxq-title-toolview>div:nth-of-type(2)>div>p:nth-of-type(2) {
+	width: 300px;
+	font-size: 12px;
+	color: #8F98A8;
+	line-height: 20px;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+.mxq-title-toolview>div:nth-of-type(2)>div>img {
+	float:right;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.mxq-title-setting>ul {
+	top: 60px;
+	right: 10px;
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>用户登录</title>
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../plugins/bootstrap-validator/css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" href="../css/index.css" />
+
+    <script type="text/javascript" src="../plugins/jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
+
+</head>
+<script type="text/javascript">
+</script>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="page-header">
+                <h2>Diagnoa 后台管理系统</h2>
+            </div>
+
+            <form id="defaultForm" method="post" class="form-horizontal" action="user/login">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Username</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" name="userName" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Password</label>
+                    <div class="col-lg-5">
+                        <input type="password" class="form-control" name="passWord" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
