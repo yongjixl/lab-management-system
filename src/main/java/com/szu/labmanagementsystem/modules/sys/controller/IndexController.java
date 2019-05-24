@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController {
     @RequestMapping("/")
     public String index() {
-        return "index";
+        return "login";
+    }
+
+    @RequestMapping("/userpage")
+    public String userPage(){
+        return "usermanage";
     }
 }
