@@ -31,8 +31,8 @@
     <div class="title-menu">
 
       <ul class="nav nav-pills">
-        <li  class="active"><a href="javascript:void(0);"   class="SchoolNavTab">实验室管理</a></li>
-        <li><a href="javascript:void(0);" onclick="storepage()"  class="SchoolNavTab">仓库管理</a></li>
+        <li><a href="javascript:void(0);" onclick="labpage()"  class="SchoolNavTab">实验室管理</a></li>
+        <li class="active"><a href="javascript:void(0);"   class="SchoolNavTab">仓库管理</a></li>
         <li><a href="javascript:void(0);" onclick="labstorepage()" class="SchoolNavTab">实验室物品管理</a></li>
         <li><a href="javascript:void(0);" onclick="userpage()" class="SchoolNavTab">用户管理</a></li>
       </ul>
@@ -44,7 +44,7 @@
 
 
 <div class="container title-top" id="UserNavTab">
-  <button type="button" id="add_user" class="btn btn-primary">添加实验室</button>
+  <button type="button" id="add_user" class="btn btn-primary">添加物品</button>
   <table id="table" data-toggle="table"
          data-classes="table table-no-bordered table-hover"
          data-show-refresh="true" data-pagination="true"
@@ -54,7 +54,8 @@
          data-side-pagination="server" data-ajax="ajaxRequestClient">
     <thead>
     <tr>
-      <th data-field="labName" data-valign="middle" data-width="10%">实验室名</th>
+      <th data-field="goodsName" data-valign="middle" data-width="10%">物品名称</th>
+      <th data-field="goodsStock" data-valign="middle" data-width="10%">物品库存</th>
       <th data-field="gmtCreate" data-valign="middle" data-width="15%">创建时间</th>
       <th data-field="operate" data-valign="middle" data-width="8%"
           data-formatter="addOperations" data-events="operateEvents">操作</th>
@@ -72,12 +73,16 @@
                 aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">修改实验室信息</h4>
+        <h4 class="modal-title">修改物品信息</h4>
       </div>
       <div class="modal-body">
         <div class="col-md-6 mb-3">
-          <label for="eidt_labname">实验室名</label>
-          <input type="text" class="form-control" id="eidt_labname" placeholder="" value="" required="">
+          <label for="eidt_goodsname">物品名称</label>
+          <input type="text" class="form-control" id="eidt_goodsname" placeholder="" value="" required="">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="eidt_goodsstock">物品库存</label>
+          <input type="text" class="form-control" id="eidt_goodsstock" placeholder="" value="" required="">
         </div>
       </div>
       <div class="modal-footer">
@@ -97,7 +102,7 @@
 <script type="text/javascript"
         src="../plugins/bootstrap-table/bootstrap-table.js"></script>
 <script src="../plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script charset="UTF-8" src="../js/labmanage.js?s=23"></script>
+<script charset="UTF-8" src="../js/storemanage.js?s=23"></script>
 
 
 </body>

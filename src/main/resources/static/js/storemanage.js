@@ -56,24 +56,18 @@ $(function () {
 
     $('#add_user').click(function () {
 
-        $('#eidt_username').val("");
-        $('#eidt_password').val("");
-        $('#eidt_stuno').val("");
-        $('#eidt_age').val("");
-
+        $('#eidt_goodsname').val("");
+        $('#eidt_goodsstock').val("");
 
         $('button#save').unbind('click');
         $('button#save').click(function () {
             var params = {};
 
-            params['userName'] = $('#eidt_username').val();
-            params['passWord'] = $('#eidt_password').val();
-            params['studentNo'] = $('#eidt_stuno').val();
-            params['age'] = $('#eidt_age').val();
+            params['goodsName'] = $('#eidt_goodsname').val();
+            params['goodsStock'] = $('#eidt_goodsstock').val();
 
-            console.log(params);
             $.ajax({
-                url: '/usermanage/insert',
+                url: '/storemanage/insert',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -89,21 +83,19 @@ $(function () {
         });
 
         $('#edit-modal').modal('show');
-    });
+    })
 
 
 });
 
-function labpage(){
+function labpage() {
     window.location.href=webRoot + '/labpage';
 }
-
-function storepage(){
-    window.location.href=webRoot + '/storepage';
-}
-
-function labstorepage(){
+function labstorepage() {
     window.location.href=webRoot + '/labstorepage';
+}
+function userpage() {
+    window.location.href=webRoot + '/userpage';
 }
 
 
@@ -112,7 +104,7 @@ function labstorepage(){
  */
 function ajaxRequestClient(params) {
     $.ajax({
-        url: '/usermanage/list',
+        url: '/storemanage/list',
         type: 'get',
         data: params.data,
         success: function (data) {
@@ -137,24 +129,10 @@ function addOperations(value, row, index) {
     return '<a class="edit" href="javascript:void(0);">修改</a> <a class="delete" href="javascript:void(0);">删除</a>';
 }
 
-function authFormatter(value, row, index) {
-    if (value && value!='0000000000') {
-        var str = '';
-        for (i = 0; i < value.length; i++) {
-            if (value.charAt(i) == "1") {
-                str += checkboxContent[i] + "、";
-            }
-        }
-        return str.substring(0, str.length - 1);
-    } else {
-        return "--"
-    }
-}
-
 window.operateEvents = {
     'click .delete':function (e, value, row, index) {
         $.ajax({
-            url: '/usermanage/delete/'+row.userId,
+            url: '/storemanage/delete/'+row.goodsId,
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json',
@@ -168,23 +146,19 @@ window.operateEvents = {
     
     'click .edit': function (e, value, row, index) {
 
-        $('#eidt_username').val(row.userName);
-        $('#eidt_password').val(row.passWord);
-        $('#eidt_stuno').val(row.studentNo);
-        $('#eidt_age').val(row.age);
+        $('#eidt_goodsname').val(row.goodsName);
+        $('#eidt_goodsstock').val(row.goodsStock);
+
 
         $('button#save').unbind('click');
         $('button#save').click(function () {
             var params = {};
-            params['userId'] = row.userId;
-            params['userName'] = $('#eidt_username').val();
-            params['passWord'] = $('#eidt_password').val();
-            params['studentNo'] = $('#eidt_stuno').val();
-            params['age'] = $('#eidt_age').val();
+            params['goodsId'] = row.goodsId;
+            params['goodsName'] = $('#eidt_goodsname').val();
+            params['goodsStock'] = $('#eidt_goodsstock').val();
 
-            console.log(params);
             $.ajax({
-                url: '/usermanage/update',
+                url: '/storemanage/update',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',

@@ -1,17 +1,24 @@
 package com.szu.labmanagementsystem.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @TableName("tb_user")
 public class UserEntity implements Serializable{
     private static final long serialVersionUID = 1L;
+
+    @TableId(type = IdType.AUTO)
     private Long userId;
     private String userName;
     private String passWord;
     private String StudentNo;
     private Integer age;
+    private Date gmtCreate;
+    private Date gmtUpdate;
 
     public UserEntity() {
     }
@@ -62,5 +69,21 @@ public class UserEntity implements Serializable{
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtUpdate() {
+        return gmtUpdate;
+    }
+
+    public void setGmtUpdate(Date gmtUpdate) {
+        this.gmtUpdate = gmtUpdate;
     }
 }

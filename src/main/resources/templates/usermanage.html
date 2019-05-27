@@ -29,7 +29,11 @@
             </div>
         </div>
         <div class="title-menu">
+
             <ul class="nav nav-pills">
+                <li ><a href="javascript:void(0);" onclick="labpage()"  class="SchoolNavTab">实验室管理</a></li>
+                <li><a href="javascript:void(0);" onclick="storepage()"  class="SchoolNavTab">仓库管理</a></li>
+                <li><a href="javascript:void(0);" onclick="labstorepage()" class="SchoolNavTab">实验室物品管理</a></li>
                 <li class="active"><a href="javascript:void(0);"  class="SchoolNavTab">用户管理</a></li>
             </ul>
         </div>
@@ -40,16 +44,21 @@
 
 
 <div class="container title-top" id="UserNavTab">
+    <button type="button" id="add_user" class="btn btn-primary">添加学生</button>
     <table id="table" data-toggle="table"
            data-classes="table table-no-bordered table-hover"
            data-show-refresh="true" data-pagination="true"
+           data-query-params="queryParams"
+           data-page-size="10" data-page-number="1"
            data-page-list="[10,25,50]" data-search="true"
-           data-side-pagination="client" data-ajax="ajaxRequestClient">
+           data-side-pagination="server" data-ajax="ajaxRequestClient">
         <thead>
             <tr>
                 <th data-field="userName" data-valign="middle" data-width="10%">用户名</th>
-                <th data-field="createdAt" data-valign="middle" data-width="15%" data-formatter="timeFormatter">创建时间</th>
-                <th data-field="password" data-valign="middle" data-width="7%">密码</th>
+                <th data-field="passWord" data-valign="middle" data-width="7%">密码</th>
+                <th data-field="studentNo" data-valign="middle" data-width="10%">学号</th>
+                <th data-field="age" data-valign="middle" data-width="10%">年龄</th>
+                <th data-field="gmtCreate" data-valign="middle" data-width="15%">创建时间</th>
                 <th data-field="operate" data-valign="middle" data-width="8%"
                     data-formatter="addOperations" data-events="operateEvents">操作</th>
             </tr>
@@ -66,15 +75,25 @@
                         aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">修改权限</h4>
+                <h4 class="modal-title">修改用户</h4>
             </div>
             <div class="modal-body">
-               <%-- <div class="row">
-                </div>--%>
-                <div class="checkbox">
-                    <ul id="checkboxUl">
+                <div class="col-md-6 mb-3">
+                    <label for="eidt_username">用户名</label>
+                    <input type="text" class="form-control" id="eidt_username" placeholder="" value="" required="">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="eidt_password">密码</label>
+                    <input type="text" class="form-control" id="eidt_password" placeholder="" value="" required="">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="eidt_stuno">学号</label>
+                    <input type="text" class="form-control" id="eidt_stuno" placeholder="" value="" required="">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="eidt_age">年龄</label>
+                    <input type="text" class="form-control" id="eidt_age" placeholder="" value="" required="">
 
-                    </ul>
                 </div>
             </div>
             <div class="modal-footer">

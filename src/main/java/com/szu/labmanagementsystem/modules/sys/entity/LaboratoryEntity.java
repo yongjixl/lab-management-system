@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @TableName("tb_lab")
 public class LaboratoryEntity implements Serializable {
@@ -18,13 +19,18 @@ public class LaboratoryEntity implements Serializable {
     @TableField("lab_name")
     private String labName;
 
+    private Date gmtCreate;
+    private Date gmtUpdate;
+
     public LaboratoryEntity() {
 
     }
 
-    public LaboratoryEntity(Long labId, String labName) {
+    public LaboratoryEntity(Long labId, String labName, Date gmtCreate, Date gmtUpdate) {
         this.labId = labId;
         this.labName = labName;
+        this.gmtCreate = gmtCreate;
+        this.gmtUpdate = gmtUpdate;
     }
 
     public Long getLabId() {
@@ -41,5 +47,21 @@ public class LaboratoryEntity implements Serializable {
 
     public void setLabName(String labName) {
         this.labName = labName;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtUpdate() {
+        return gmtUpdate;
+    }
+
+    public void setGmtUpdate(Date gmtUpdate) {
+        this.gmtUpdate = gmtUpdate;
     }
 }

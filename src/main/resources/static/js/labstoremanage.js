@@ -18,6 +18,8 @@ Date.prototype.Format = function (fmt) { //author: meizz
 };
 
 
+var isGoodsSelectInit = false;
+var isLabSelectInit = false;
 /**
  * 每次加载500条数据
  * */
@@ -56,24 +58,18 @@ $(function () {
 
     $('#add_user').click(function () {
 
-        $('#eidt_username').val("");
-        $('#eidt_password').val("");
-        $('#eidt_stuno').val("");
-        $('#eidt_age').val("");
-
+        $('#eidt_goodsname').val("");
+        $('#eidt_goodsstock').val("");
 
         $('button#save').unbind('click');
         $('button#save').click(function () {
             var params = {};
+            params['goodsId'] = $('#select_goods').val();
+            params['labId'] = $('#select_lab').val();
+            params['goodsAmount'] = $('#eidt_goodsamount').val();
 
-            params['userName'] = $('#eidt_username').val();
-            params['passWord'] = $('#eidt_password').val();
-            params['studentNo'] = $('#eidt_stuno').val();
-            params['age'] = $('#eidt_age').val();
-
-            console.log(params);
             $.ajax({
-                url: '/usermanage/insert',
+                url: '/labstoremanage/insert',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -82,28 +78,80 @@ $(function () {
                     if(data.code == "0"){
                         $('#edit-modal').modal('hide');
                         $('#table').bootstrapTable('refresh');
+                    }else{
+                        alert(data.msg);
                     }
                 }
             })
-
         });
 
+        initSelect();
+
+
         $('#edit-modal').modal('show');
-    });
+    })
 
 
 });
 
-function labpage(){
+
+
+function initSelect() {
+    var params = {};
+
+    if(!isLabSelectInit){
+        $.ajax({
+            url: '/labmanage/list',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(params),
+            success: function(data) {
+                if(data != null){
+                    var records = data.list;
+                    for(var i=0;i<records.length;i++){
+                        $('#select_lab').append("<option value=" + records[i].labId + ">" + records[i].labName + "</option>");
+                    }
+                    $('#select_lab').selectpicker('refresh');
+                    $('#select_lab').selectpicker('render');
+                    isLabSelectInit = true;
+                }
+            }
+        });
+    }
+
+
+    if(!isGoodsSelectInit){
+        $.ajax({
+            url: '/storemanage/list',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(params),
+            success: function(data) {
+                if(data != null){
+                    var records = data.list;
+                    for(var i=0;i<records.length;i++){
+                        $('#select_goods').append("<option value=" + records[i].goodsId + ">" + records[i].goodsName + "</option>");
+                    }
+                    $('#select_goods').selectpicker('refresh');
+                    $('#select_goods').selectpicker('render');
+                    isGoodsSelectInit = true;
+                }
+            }
+        });
+    }
+
+}
+
+function labpage() {
     window.location.href=webRoot + '/labpage';
 }
-
-function storepage(){
+function storepage() {
     window.location.href=webRoot + '/storepage';
 }
-
-function labstorepage(){
-    window.location.href=webRoot + '/labstorepage';
+function userpage() {
+    window.location.href=webRoot + '/userpage';
 }
 
 
@@ -112,7 +160,7 @@ function labstorepage(){
  */
 function ajaxRequestClient(params) {
     $.ajax({
-        url: '/usermanage/list',
+        url: '/labstoremanage/list',
         type: 'get',
         data: params.data,
         success: function (data) {
@@ -137,24 +185,10 @@ function addOperations(value, row, index) {
     return '<a class="edit" href="javascript:void(0);">修改</a> <a class="delete" href="javascript:void(0);">删除</a>';
 }
 
-function authFormatter(value, row, index) {
-    if (value && value!='0000000000') {
-        var str = '';
-        for (i = 0; i < value.length; i++) {
-            if (value.charAt(i) == "1") {
-                str += checkboxContent[i] + "、";
-            }
-        }
-        return str.substring(0, str.length - 1);
-    } else {
-        return "--"
-    }
-}
-
 window.operateEvents = {
     'click .delete':function (e, value, row, index) {
         $.ajax({
-            url: '/usermanage/delete/'+row.userId,
+            url: '/labstoremanage/delete/'+row.id,
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json',
@@ -168,23 +202,22 @@ window.operateEvents = {
     
     'click .edit': function (e, value, row, index) {
 
-        $('#eidt_username').val(row.userName);
-        $('#eidt_password').val(row.passWord);
-        $('#eidt_stuno').val(row.studentNo);
-        $('#eidt_age').val(row.age);
+        initSelect();
+
+        $('#select_goods').selectpicker('val',row.goodsId);
+        $('#select_lab').selectpicker('val',row.labId);
+        $('#eidt_goodsamount').val(row.goodsAmount);
 
         $('button#save').unbind('click');
         $('button#save').click(function () {
             var params = {};
-            params['userId'] = row.userId;
-            params['userName'] = $('#eidt_username').val();
-            params['passWord'] = $('#eidt_password').val();
-            params['studentNo'] = $('#eidt_stuno').val();
-            params['age'] = $('#eidt_age').val();
+            params['id'] = row.id;
+            params['goodsId'] = $('#select_goods').val();
+            params['labId'] = $('#select_lab').val();
+            params['goodsAmount'] = $('#eidt_goodsamount').val();
 
-            console.log(params);
             $.ajax({
-                url: '/usermanage/update',
+                url: '/labstoremanage/update',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -193,15 +226,18 @@ window.operateEvents = {
                     if(data.code == "0"){
                         $('#edit-modal').modal('hide');
                         $('#table').bootstrapTable('refresh');
+                    }else{
+                        alert(data.msg);
                     }
                 }
             })
 
         });
 
+
         $('#edit-modal').modal('show');
     }
-}
+};
 
 function Choose(t) {
     //console.log($(t).val());

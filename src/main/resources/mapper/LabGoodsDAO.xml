@@ -3,4 +3,8 @@
 <mapper namespace="com.szu.labmanagementsystem.modules.sys.dao.LabGoodsDAO">
 
 
+    <select id="selectAllLabGoods" resultType="com.szu.labmanagementsystem.modules.sys.entity.vo.LabGoodsVO">
+        select tlg.id,tlg.lab_id, tl.lab_name,tlg.goods_id,ts.goods_name,tlg.goods_amount,tlg.gmt_create from tb_lab_goods tlg left join tb_lab tl on tlg.lab_id = tl.lab_id  left join tb_store ts on tlg.goods_id = ts.goods_id
+    </select>
+
 </mapper>

@@ -18,4 +18,18 @@ public class IndexController {
     public String userPage(){
         return "usermanage";
     }
+
+    @RequestMapping("/labpage")
+    public String labPage(){
+        return "labmanage";
+    }
+
+    @RequestMapping("/storepage")
+    public String storepage(){
+        return "storemanage";
+    }
+    @RequestMapping("/labstorepage")
+    public String labstorepage(){
+        return "labstoremanage";
+    }
 }

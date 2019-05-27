@@ -81,16 +81,7 @@ img {
 	background-color: white;
 }
 
-/** LOGO */
-.title-panel>.title-logo {
-	float: left;
-	height:  63px;
-	width: 280px;
-	display: block;
-	overflow: hidden;
-	background: url(/image/logo_heng1.jpg) no-repeat;
-	background-size: cover;
-}
+
 
 /** 校徽或个人头像 */
 .title-panel>.img-circle {

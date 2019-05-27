@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="../plugins/bootstrap-table/bootstrap-table.min.css">
   <link rel="stylesheet" href="../plugins/bootstrap-multiselect/css/bootstrap-multiselect.css">
+  <link rel="stylesheet" href="../plugins/bootstrap-select/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -31,9 +32,9 @@
     <div class="title-menu">
 
       <ul class="nav nav-pills">
-        <li  class="active"><a href="javascript:void(0);"   class="SchoolNavTab">实验室管理</a></li>
-        <li><a href="javascript:void(0);" onclick="storepage()"  class="SchoolNavTab">仓库管理</a></li>
-        <li><a href="javascript:void(0);" onclick="labstorepage()" class="SchoolNavTab">实验室物品管理</a></li>
+        <li><a href="javascript:void(0);" onclick="labpage()"  class="SchoolNavTab">实验室管理</a></li>
+        <li><a href="javascript:void(0);" onclick="storepage()" class="SchoolNavTab">仓库管理</a></li>
+        <li class="active"><a  href="javascript:void(0);"  class="SchoolNavTab">实验室物品管理</a></li>
         <li><a href="javascript:void(0);" onclick="userpage()" class="SchoolNavTab">用户管理</a></li>
       </ul>
     </div>
@@ -44,7 +45,7 @@
 
 
 <div class="container title-top" id="UserNavTab">
-  <button type="button" id="add_user" class="btn btn-primary">添加实验室</button>
+  <button type="button" id="add_user" class="btn btn-primary">实验室添加物品</button>
   <table id="table" data-toggle="table"
          data-classes="table table-no-bordered table-hover"
          data-show-refresh="true" data-pagination="true"
@@ -54,7 +55,9 @@
          data-side-pagination="server" data-ajax="ajaxRequestClient">
     <thead>
     <tr>
-      <th data-field="labName" data-valign="middle" data-width="10%">实验室名</th>
+      <th data-field="labName" data-valign="middle" data-width="10%">实验室名称</th>
+      <th data-field="goodsName" data-valign="middle" data-width="10%">物品名称</th>
+      <th data-field="goodsAmount" data-valign="middle" data-width="10%">物品数量</th>
       <th data-field="gmtCreate" data-valign="middle" data-width="15%">创建时间</th>
       <th data-field="operate" data-valign="middle" data-width="8%"
           data-formatter="addOperations" data-events="operateEvents">操作</th>
@@ -72,12 +75,19 @@
                 aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">修改实验室信息</h4>
+        <h4 class="modal-title">修改实验室物品信息</h4>
       </div>
       <div class="modal-body">
+
+        <select class="col-md-6 mb-3 selectpicker" id="select_lab">
+        </select>
+
+        <select class="col-md-6 mb-3 selectpicker" id="select_goods">
+        </select>
+
         <div class="col-md-6 mb-3">
-          <label for="eidt_labname">实验室名</label>
-          <input type="text" class="form-control" id="eidt_labname" placeholder="" value="" required="">
+          <label for="eidt_goodsamount">物品数量</label>
+          <input type="number" class="form-control" id="eidt_goodsamount" placeholder="" value="" required="">
         </div>
       </div>
       <div class="modal-footer">
@@ -94,10 +104,12 @@
 
 <script type="text/javascript" src="../../plugins/jquery/jquery-2.1.1.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../plugins/bootstrap/js/bootstrap.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="../../plugins/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
 <script type="text/javascript"
         src="../plugins/bootstrap-table/bootstrap-table.js"></script>
 <script src="../plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script charset="UTF-8" src="../js/labmanage.js?s=23"></script>
+<script charset="UTF-8" src="../js/labstoremanage.js?s=23"></script>
 
 
 </body>

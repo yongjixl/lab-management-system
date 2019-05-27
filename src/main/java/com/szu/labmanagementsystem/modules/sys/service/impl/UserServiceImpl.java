@@ -27,13 +27,10 @@ public class UserServiceImpl extends ServiceImpl<UserDAO,UserEntity> implements 
 
     public PageUtils selectAllUser(Map<String, Object> params){
 
-        String username = (String)params.get("username");
-        Long createUserId = (Long)params.get("createUserId");
+
         IPage<UserEntity> page = this.page(
                 new Query<UserEntity>().getPage(params),
                 new QueryWrapper<UserEntity>()
-                        .like(StringUtils.isNotBlank(username),"username", username)
-                        .eq(createUserId != null,"create_user_id", createUserId)
         );
         return new PageUtils(page);
     }
