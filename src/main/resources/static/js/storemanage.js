@@ -59,6 +59,7 @@ $(function () {
     })
     $('#add_user').click(function () {
 
+        $('.modal-title').text('添加物品');
         $('#eidt_goodsname').val("");
         $('#eidt_goodsstock').val("");
 
@@ -149,6 +150,7 @@ window.operateEvents = {
     
     'click .edit': function (e, value, row, index) {
 
+        $('.modal-title').text('修改物品');
         $('#eidt_goodsname').val(row.goodsName);
         $('#eidt_goodsstock').val(row.goodsStock);
 

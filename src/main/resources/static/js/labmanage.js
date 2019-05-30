@@ -61,6 +61,7 @@ $(function () {
 
     $('#add_user').click(function () {
 
+        $('.modal-title').text('添加实验室');
         $('#eidt_labname').val("");
 
         $('button#save').unbind('click');
@@ -149,6 +150,7 @@ window.operateEvents = {
     
     'click .edit': function (e, value, row, index) {
 
+        $('.modal-title').text('修改实验室');
         $('#eidt_labname').val(row.labName);
 
 

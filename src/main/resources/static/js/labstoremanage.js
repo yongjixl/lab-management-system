@@ -61,8 +61,10 @@ $(function () {
 
     $('#add_user').click(function () {
 
+        $('.modal-title').text('添加实验室物品');
         $('#eidt_goodsname').val("");
         $('#eidt_goodsstock').val("");
+        $('#eidt_goodsamount').val("");
 
         $('button#save').unbind('click');
         $('button#save').click(function () {
@@ -205,6 +207,7 @@ window.operateEvents = {
     
     'click .edit': function (e, value, row, index) {
 
+        $('.modal-title').text('修改实验室物品');
         initSelect();
 
         $('#select_goods').selectpicker('val',row.goodsId);

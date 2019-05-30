@@ -59,6 +59,7 @@ $(function () {
     })
     $('#add_user').click(function () {
 
+        $('.modal-title').text('添加学生');
         $('#eidt_username').val("");
         $('#eidt_password').val("");
         $('#eidt_stuno').val("");
@@ -171,6 +172,7 @@ window.operateEvents = {
     
     'click .edit': function (e, value, row, index) {
 
+        $('.modal-title').text('修改学生');
         $('#eidt_username').val(row.userName);
         $('#eidt_password').val(row.passWord);
         $('#eidt_stuno').val(row.studentNo);
