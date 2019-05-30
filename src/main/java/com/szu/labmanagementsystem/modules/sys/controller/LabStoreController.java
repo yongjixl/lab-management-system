@@ -34,10 +34,25 @@ public class LabStoreController {
 
         StoreEntity storeEntity = storeService.getById(labGoodsEntity.getGoodsId());
         Long goodsStock = storeEntity.getGoodsStock();
-        if(labGoodsEntity.getGoodsAmount() > goodsStock){
-            return R.error("需要的数量超过库存");
+
+        Long needAmount = labGoodsEntity.getGoodsAmount();
+        LabGoodsEntity oldEntity = labGoodsService.getById(labGoodsEntity.getId());
+        Long oldAmount = oldEntity.getGoodsAmount();
+
+        if(needAmount > oldAmount){
+            if(needAmount > goodsStock){
+                return R.error("需要的数量超过库存");
+            }else{
+                labGoodsService.updateById(labGoodsEntity);
+                storeEntity.setGoodsStock(storeEntity.getGoodsStock() - (needAmount - oldAmount));
+                storeService.updateById(storeEntity);
+            }
+        }else{
+            labGoodsService.updateById(labGoodsEntity);
+            storeEntity.setGoodsStock(storeEntity.getGoodsStock() + (oldAmount - needAmount));
+            storeService.updateById(storeEntity);
         }
-        labGoodsService.updateById(labGoodsEntity);
+
         return R.ok();
     }
 
@@ -56,25 +71,36 @@ public class LabStoreController {
         LabGoodsEntity insertOrUpdateEntity = null;
         if(entity != null){
             entity.setGoodsAmount(entity.getGoodsAmount()+labGoodsEntity.getGoodsAmount());
-            if(entity.getGoodsAmount() > goodsStock){
+            if(labGoodsEntity.getGoodsAmount() > goodsStock){
                 return R.error("需要的数量超过库存");
             }
             insertOrUpdateEntity = entity;
+            storeEntity.setGoodsStock(goodsStock - labGoodsEntity.getGoodsAmount());
         }else{
             if(labGoodsEntity.getGoodsAmount() > goodsStock){
                 return R.error("需要的数量超过库存");
             }
             insertOrUpdateEntity = labGoodsEntity;
+            storeEntity.setGoodsStock(storeEntity.getGoodsStock() - insertOrUpdateEntity.getGoodsAmount());
         }
 
         labGoodsService.insertOrUpdate(insertOrUpdateEntity);
+        storeService.updateById(storeEntity);
 
         return R.ok();
     }
 
     @RequestMapping(path = "/delete/{userId}")
     public R update(@PathVariable Long userId){
+
+        LabGoodsEntity labGoodsEntity = labGoodsService.getById(userId);
+        Long goodsAmount = labGoodsEntity.getGoodsAmount();
         labGoodsService.removeById(userId);
+
+        StoreEntity storeEntity = storeService.getById(labGoodsEntity.getGoodsId());
+        storeEntity.setGoodsStock(storeEntity.getGoodsStock() + goodsAmount);
+        storeService.updateById(storeEntity);
+
         return R.ok();
     }
 }

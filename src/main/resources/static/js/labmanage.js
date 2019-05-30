@@ -53,6 +53,11 @@ $(function () {
     }
     $('#UserNavTab .search input').attr('placeholder', '搜索用户名称');
 
+    $('#logout').click(function () {
+        window.location.href=webRoot + '/user/logout';
+        window.location.href=webRoot;
+    })
+
 
     $('#add_user').click(function () {
 

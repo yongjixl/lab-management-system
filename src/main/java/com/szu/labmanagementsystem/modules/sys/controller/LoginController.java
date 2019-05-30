@@ -27,4 +27,9 @@ public class LoginController {
             return "error";
         }
     }
+
+    @RequestMapping(path = "/user/logout",method = RequestMethod.GET)
+    public String logout(){
+        return "login";
+    }
 }
